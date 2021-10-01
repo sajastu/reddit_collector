@@ -246,6 +246,12 @@ print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c i
 print(
     f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()]))}')
 
+for set in ["train", "val", "test"]:
+    all_vocabs_for_set = vocabulary[set]
+    print(f'{set}: count: {len(all_vocabs_for_set.keys())}')
+    newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
+    print(f'Occurring +10 times: count: {len(newDict.keys())}')
+
 print('Saving to pickle...')
 if not os.path.exists("stats/"):
     os.makedirs("stats/")
