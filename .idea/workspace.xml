@@ -46,7 +46,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633053958970</updated>
-      <workItem from="1633053962578" duration="7940000" />
+      <workItem from="1633053962578" duration="8248000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1633059478998</created>
@@ -195,7 +195,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633062497876</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="update general_stat.py">
+      <created>1633062616766</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1633062616766</updated>
+    </task>
+    <task id="LOCAL-00023" summary="update general_stat.py">
+      <created>1633062722851</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1633062722851</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

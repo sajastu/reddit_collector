@@ -114,7 +114,8 @@ for root, dirs, files in os.walk(f'/mnt/ilcompfad1/user/dernonco/backup-interns/
 print('reading entire dataset...')
 pool = Pool(cpu_count())
 idx = 0
-id_files = id_files[:1]
+# id_files = id_files
+cc = {'train':0, 'test':0}
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
         set = 'train'
@@ -122,10 +123,12 @@ for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
         set = 'val'
     else:
         set='test'
-
     for k, v in out.items():
         v['set'] = set
         ds[k] = v
+    cc[set] +=1
+    if cc['test']==1 and cc['train'] ==1:
+        break
     idx+=1
 
 pool.close()
@@ -246,11 +249,19 @@ print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c i
 print(
     f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()]))}')
 
+print('------- Vocab Stats -------')
 for set in ["train", "val", "test"]:
     all_vocabs_for_set = vocabulary[set]
     print(f'{set}: count: {len(all_vocabs_for_set.keys())}')
     newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
     print(f'Occurring +10 times: count: {len(newDict.keys())}')
+
+common = list(filter(lambda x:x in list(vocabulary['train'].keys()), list(vocabulary['test'].keys())))
+
+print('Calculating train and test vocab overlap')
+print(
+    len(common) / len(list(vocabulary['test'].keys())
+))
 
 print('Saving to pickle...')
 if not os.path.exists("stats/"):
