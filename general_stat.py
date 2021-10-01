@@ -121,15 +121,15 @@ id_files = ['/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/datas
 
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
-        set = 'train'
+        split = 'train'
     elif 'val' in id_files[idx]:
-        set = 'val'
+        split = 'val'
     else:
-        set='test'
+        split= 'test'
     for k, v in out.items():
-        v['set'] = set
+        v['set'] = split
         ds[k] = v
-    cc[set] +=1
+    cc[split] +=1
 
     idx+=1
 
@@ -195,17 +195,17 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
     """
 
-    set = out['set']
+    split = out['set']
 
     # adding to vocab
     whole_tokens = out['src_tkns'] + out['tgt_tkns']
     for tkn in whole_tokens:
-        if tkn not in vocabulary[set].keys():
-            vocabulary[set][tkn] = 1
+        if tkn not in vocabulary[split].keys():
+            vocabulary[split][tkn] = 1
         else:
-            vocabulary[set][tkn] += 1
+            vocabulary[split][tkn] += 1
 
-    if set == 'train' or set == 'test':
+    if split == 'train' or split == 'test':
         for tkn in set(whole_tokens):
             if tkn in vocabulary['train'].keys() and tkn in vocabulary['test'].keys():
                 vocabulary['common'] += 1
@@ -219,7 +219,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     tgt_stat['tgt_sent_len_list'].extend(out['tgt_sent_len_list'])
 
 
-    counts[set]+=1
+    counts[split]+=1
 
     if sum([c for set, c in counts.items()]) % 2000 == 0:
         print('------- General Stats -------')
@@ -237,9 +237,9 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
         print('------- Vocab Stats -------')
 
-        for set in ["train", "val", "test"]:
-            all_vocabs_for_set = vocabulary[set]
-            print(f'{set}: count: {len(all_vocabs_for_set.keys())}')
+        for split in ["train", "val", "test"]:
+            all_vocabs_for_set = vocabulary[split]
+            print(f'{split}: count: {len(all_vocabs_for_set.keys())}')
             newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
             print(f'Occurring +10 times: count: {len(newDict.keys())}')
 
@@ -264,9 +264,9 @@ print(
     f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()]))}')
 
 print('------- Vocab Stats -------')
-for set in ["train", "val", "test"]:
-    all_vocabs_for_set = vocabulary[set]
-    print(f'{set}: count: {len(all_vocabs_for_set.keys())}')
+for split in ["train", "val", "test"]:
+    all_vocabs_for_set = vocabulary[split]
+    print(f'{split}: count: {len(all_vocabs_for_set.keys())}')
     newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
     print(f'Occurring +10 times: count: {len(newDict.keys())}')
 

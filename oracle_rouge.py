@@ -178,7 +178,7 @@ def _mp_labelling(param):
     return ent, ext_summary
 
 def _run(args):
-    if len(args.set) > 0:
+    if len(args.split) > 0:
         pass
     else:
         for set in ['test', 'validation', 'train']:
