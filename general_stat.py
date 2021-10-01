@@ -208,7 +208,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
     counts[set]+=1
 
-    if sum([c for set, c in counts.items()]) % 200000 == 0:
+    if sum([c for set, c in counts.items()]) % 2000 == 0:
         print(f'iteration {sum([c for set, c in counts.items()])//200000}')
         print(f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
         print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
