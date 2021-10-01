@@ -154,9 +154,8 @@ vocabulary = {
     'train': {},
     'val': {},
     'test': {},
-    'common': 0
 }
-
+common = set()
 src_stat = {
     'src_tkns_len': 0,
     'src_sents_len': 0,
@@ -208,7 +207,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     if split == 'train' or split == 'test':
         for tkn in set(whole_tokens):
             if tkn in vocabulary['train'].keys() and tkn in vocabulary['test'].keys():
-                vocabulary['common'] += 1
+                common.add(tkn)
 
     src_stat['src_tkns_len'] += out['src_tkns_len']
     src_stat['src_sents_len'] += out['src_sents_len']
@@ -244,8 +243,8 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
             print(f'Occurring +10 times: count: {len(newDict.keys())}')
 
         print(
-            vocabulary['common'] / len(list(vocabulary['test'].keys())
-        ))
+            f'Overlap: {len(common) / len(list(vocabulary["test"].keys()))}'
+            )
 
 
 
