@@ -12,61 +12,15 @@ from tqdm import tqdm
 from somajo import SoMaJo
 import spacy
 
-from rg_mesh import _rg_mesh
 # from rg_mesh import _rg_heat_2d
 
 nlp = spacy.load('en_core_web_sm')
 # nlp.add_pipe(nlp.create_pipe('sentencizer')) # updated
 nlp.add_pipe('sentencizer')
 
-from utils.rouge_score import evaluate_rouge
-from utils.oracle_rouge import _get_word_ngrams, cal_rouge, greedy_selection
 random.seed(8080)
 
 tokenizer = SoMaJo("en_PTB")
-
-def _mp_return(param):
-    return param
-
-
-def compute_rg(src_sents, summary):
-    def _rouge_clean(s):
-        return re.sub(r'[^a-zA-Z0-9 ]', '', s)
-    rg_labels = []
-    rg1_labels = []
-    for sent in src_sents:
-        result = evaluate_rouge([_rouge_clean(sent)], [_rouge_clean(summary)])
-        rg_labels.append((result[1] + result[2]) / 2)
-        rg1_labels.append(result[0])
-
-    if sum(rg_labels) > 0:
-        rg_labels = [r / sum(rg_labels) for r in rg_labels]
-    else:
-        print(str(rg_labels) + ' ' + 'rg1 starts...')
-        rg_labels = rg1_labels
-        if sum(rg_labels) > 0:
-            rg_labels = [r / sum(rg_labels) for r in rg_labels]
-        else:
-            print(str(rg_labels) + ' ' + 'rg1 not submitted...')
-            rg_labels = [0 for r in rg_labels]
-
-    return rg_labels
-
-def _mp_rg_stats(param):
-    ent = param
-    out = {'x':[], 'y':[]}
-
-    rg_labels = ent['rg_labels']
-    sent_len = len(rg_labels)
-    max_rg = max(rg_labels)
-    if max_rg == 0:
-        return None
-
-    for j, y0 in enumerate(rg_labels):
-        out['x'].append((j+1) / sent_len)
-        out['y'].append(y0 / max_rg)
-
-    return out
 
 def _mp_m_process(param):
     ent = param
@@ -98,7 +52,6 @@ def _mp_m_process(param):
     summary_sents = ent['summary']
     tgt_sentences = [i for i in nlp(summary_sents).sents]
 
-    # rg_labels = compute_rg(src_sents, summary_sents)
     tgt_sentences_tkns = tokenizer.tokenize_text([summary_sents])
 
     tgt_tkns = []
@@ -107,12 +60,6 @@ def _mp_m_process(param):
         for token in sentence:
             sent_tkns.append(token.text)
         tgt_tkns.append(sent_tkns)
-
-    # ext_labels, selected_sent_ids = greedy_selection(src_tkns, [tgt_tkns], 3)
-    # assert len(ext_labels) == len(src_sents), '`ext_labels` and `src_sents` should have same size'
-    # assert ext_labels is not None, '`ext_labels` should not be uninitialized'
-    # ent['ext_labels'] = ext_labels
-    # ent['rg_labels'] = rg_labels
 
     return {
         'set': ent['set'],
