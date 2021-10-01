@@ -115,7 +115,7 @@ print('reading entire dataset...')
 pool = Pool(cpu_count())
 idx = 0
 # id_files = id_files
-cc = {'train':0, 'test':0}
+cc = {'train':0, 'test':0, 'val': 0}
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
         set = 'train'
