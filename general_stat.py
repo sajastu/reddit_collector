@@ -66,8 +66,6 @@ def _mp_m_process(param):
     tgttkns = []
     for t in tgt_tkns:
         tgttkns.extend(t)
-    import pdb;pdb.set_trace()
-
     return {
         'set': ent['set'],
         'src_tkns': srctkns,
@@ -138,7 +136,7 @@ pool = Pool(cpu_count())
 ds_th_lst =[]
 for id, ent in ds.items():
     ds_th_lst.append(ent)
-    _mp_m_process(ds_th_lst[-1])
+    # _mp_m_process(ds_th_lst[-1])
 
 ##############################
 ds_th={}
@@ -171,7 +169,7 @@ counts= {
     'val': 0
 }
 tkns = {}
-import pdb;pdb.set_trace()
+# import pdb;pdb.set_trace()
 for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_lst)):
     """
     return {
