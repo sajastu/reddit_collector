@@ -23,7 +23,6 @@ random.seed(8080)
 tokenizer = SoMaJo("en_PTB")
 
 def _mp_m_process(param):
-    import pdb;pdb.set_trace()
     ent = param
     src_sents = ent['document'].split('</s><s> ')
     src_tkns = []
@@ -61,6 +60,7 @@ def _mp_m_process(param):
         for token in sentence:
             sent_tkns.append(token.text)
         tgt_tkns.append(sent_tkns)
+    import pdb;pdb.set_trace()
 
     return {
         'set': ent['set'],
