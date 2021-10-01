@@ -120,8 +120,8 @@ for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
         set='test'
 
     for k, v in out.items():
+        v['set'] = set
         ds[k] = v
-        ds['set'] = set
     idx+=1
 
 pool.close()
@@ -130,7 +130,6 @@ pool.join()
 pool = Pool(cpu_count())
 
 ds_th_lst =[]
-import pdb;pdb.set_trace()
 for id, ent in ds.items():
     ds_th_lst.append(ent)
     _mp_m_process(ds_th_lst[-1])
