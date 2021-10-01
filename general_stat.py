@@ -8,6 +8,8 @@ import random
 import re
 from bisect import bisect_left
 from multiprocessing import cpu_count, Pool
+
+import numpy as np
 from tqdm import tqdm
 from somajo import SoMaJo
 import spacy
@@ -160,6 +162,7 @@ src_stat = {
     'src_tkns_len': 0,
     'src_sents_len': 0,
     'src_sent_len_list': [],
+    'src_tkn_len_list': [],
 }
 
 
@@ -167,6 +170,7 @@ tgt_stat = {
     'tgt_tkns_len': 0,
     'tgt_sents_len': 0,
     'tgt_sent_len_list': [],
+    'tgt_tkn_len_list': [],
 }
 
 
@@ -212,10 +216,12 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     src_stat['src_tkns_len'] += out['src_tkns_len']
     src_stat['src_sents_len'] += out['src_sents_len']
     src_stat['src_sent_len_list'].extend(out['src_sent_len_list'])
+    src_stat['src_tkn_len_list'].append(len(out['src_tkns']))
 
     tgt_stat['tgt_tkns_len'] += out['tgt_tkns_len']
     tgt_stat['tgt_sents_len'] += out['tgt_sents_len']
     tgt_stat['tgt_sent_len_list'].extend(out['tgt_sent_len_list'])
+    tgt_stat['tgt_tkn_len_list'].append(len(out['tgt_tkns']))
 
 
     counts[split]+=1
@@ -247,9 +253,6 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
             )
 
 
-
-
-# if sum([c for set, count in counts.items()]) % len(ds_th_lst) == 0:
 print(f'iteration {(sum([c for set, c in counts.items()]) // 200000 )+ 1}')
 print(
     f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
@@ -274,6 +277,32 @@ print(
     f'Overlap: {len(common) / len(list(vocabulary["test"].keys()))}'
 )
 
+src_sent_len_list = np.asarray(src_stat['src_sent_len_list'])
+tgt_sent_len_list = np.asarray(tgt_stat['tgt_sent_len_list'])
+print('===============sent_stats===========')
+print('src')
+print(np.mean(src_sent_len_list))
+print(np.min(src_sent_len_list))
+print(np.max(src_sent_len_list))
+
+print('tgt')
+print(np.mean(tgt_sent_len_list))
+print(np.min(tgt_sent_len_list))
+print(np.max(tgt_sent_len_list))
+
+print('=============== token stats===========')
+src_tkns_len_list = np.asarray(src_stat['src_tkn_len_list'])
+tgt_tkns_len_list = np.asarray(tgt_stat['tgt_tkn_len_list'])
+print('src')
+print(np.mean(src_tkns_len_list))
+print(np.min(src_tkns_len_list))
+print(np.max(src_tkns_len_list))
+print('tgt')
+print(np.mean(tgt_tkns_len_list))
+print(np.min(tgt_tkns_len_list))
+print(np.max(tgt_tkns_len_list))
+
+
 print('Saving to pickle...')
 if not os.path.exists("stats/"):
     os.makedirs("stats/")
@@ -287,12 +316,3 @@ pickle.dump({
 pool.close()
 pool.join()
 
-# print(f'--------------')
-# print(f'Count = {count}')
-# print(f'Average tokens ---> src {tokens_count[0] / count} and tgt: {tokens_count[1] / count}')
-# print(f'Average sents ---> src {average_sents[0] / count} and tgt: {average_sents[1]/ count}')
-#
-
-
-pool.close()
-pool.join()
