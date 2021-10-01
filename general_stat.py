@@ -114,7 +114,7 @@ for root, dirs, files in os.walk(f'/mnt/ilcompfad1/user/dernonco/backup-interns/
 print('reading entire dataset...')
 pool = Pool(cpu_count())
 idx = 0
-id_files = id_files[:10]
+id_files = id_files[:1]
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
         set = 'train'
@@ -209,6 +209,8 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     counts[set]+=1
 
     if sum([c for set, c in counts.items()]) % 2000 == 0:
+        print('------- General Stats -------')
+
         print(f'iteration {sum([c for set, c in counts.items()])//200000}')
         print(f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
         print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
@@ -232,7 +234,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
 
 # if sum([c for set, count in counts.items()]) % len(ds_th_lst) == 0:
-print(f'iteration {(sum([c for set, c in counts.items()]) // 200000 )+ 1}')
+print(f'iteration {(sum([c for set, c in counts.items()]) // 2000 )+ 1}')
 print(
     f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
 print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
