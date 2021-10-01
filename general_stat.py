@@ -23,6 +23,7 @@ random.seed(8080)
 tokenizer = SoMaJo("en_PTB")
 
 def _mp_m_process(param):
+    import pdb;pdb.set_trace()
     ent = param
     src_sents = ent['document'].split('</s><s> ')
     src_tkns = []
@@ -109,6 +110,7 @@ for root, dirs, files in os.walk(f'/mnt/ilcompfad1/user/dernonco/backup-interns/
 print('reading entire dataset...')
 pool = Pool(cpu_count())
 idx = 0
+id_files = id_files[:10]
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
         set = 'train'
@@ -130,7 +132,7 @@ pool = Pool(cpu_count())
 ds_th_lst =[]
 for id, ent in ds.items():
     ds_th_lst.append(ent)
-    # _mp_m_process(ds_th_lst[-1])
+    _mp_m_process(ds_th_lst[-1])
 
 ##############################
 ds_th={}
@@ -163,7 +165,7 @@ counts= {
     'val': 0
 }
 tkns = {}
-
+import pdb;pdb.set_trace()
 for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_lst)):
     """
     return {
