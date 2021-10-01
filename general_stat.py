@@ -208,17 +208,16 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
     counts[set]+=1
 
-    if sum([c for set, count in counts.items()]) % 200000 == 0:
-        print(f'iteration {sum([c for set, count in counts.items()])//200000}')
-        print(f'Count = {sum([c for set, count in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
+    if sum([c for set, c in counts.items()]) % 200000 == 0:
+        print(f'iteration {sum([c for set, c in counts.items()])//200000}')
+        print(f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
+        print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
+              f'and tgt: {tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()])}')
 
-        print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, count in counts.items()])} '
-              f'and tgt: {tgt_stat["tgt_tkns_len"] / sum([c for set, count in counts.items()])}')
+        print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c in counts.items()])} '
+              f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, c in counts.items()])}')
 
-        print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, count in counts.items()])} '
-              f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, count in counts.items()])}')
-
-        print(f'Compression ratio: {(src_stat["src_tkns_len"] [0] / sum([c for set, count in counts.items()])) / (tgt_stat["tgt_tkns_len"] [1] / sum([c for set, count in counts.items()]))}')
+        print(f'Compression ratio: {(src_stat["src_tkns_len"] [0] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] [1] / sum([c for set, count in counts.items()]))}')
 
 
         print('------- Vocab Stats -------')
@@ -233,14 +232,14 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
 
 # if sum([c for set, count in counts.items()]) % len(ds_th_lst) == 0:
-print(f'iteration {(sum([c for set, count in counts.items()]) // 200000 )+ 1}')
+print(f'iteration {(sum([c for set, c in counts.items()]) // 200000 )+ 1}')
 print(
-    f'Count = {sum([c for set, count in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
-print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, count in counts.items()])} '
-      f'and tgt: {tgt_stat["tgt_tkns_len"] / sum([c for set, count in counts.items()])}')
+    f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
+print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
+      f'and tgt: {tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()])}')
 
-print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, count in counts.items()])} '
-      f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, count in counts.items()])}')
+print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c in counts.items()])} '
+      f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, c in counts.items()])}')
 
 print(
     f'Compression ratio: {(src_stat["src_tkns_len"][0] / sum([c for set, count in counts.items()])) / (tgt_stat["tgt_tkns_len"][1] / sum([c for set, count in counts.items()]))}')
