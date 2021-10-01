@@ -201,9 +201,9 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     src_stat['src_sents_len'] += out['src_sents_len']
     src_stat['src_sent_len_list'].extend(out['src_sent_len_list'])
 
-    src_stat['tgt_tkns_len'] += out['tgt_tkns_len']
-    src_stat['tgt_sents_len'] += out['tgt_sents_len']
-    src_stat['tgt_sent_len_list'].extend(out['tgt_sent_len_list'])
+    tgt_stat['tgt_tkns_len'] += out['tgt_tkns_len']
+    tgt_stat['tgt_sents_len'] += out['tgt_sents_len']
+    tgt_stat['tgt_sent_len_list'].extend(out['tgt_sent_len_list'])
 
 
     counts[set]+=1
