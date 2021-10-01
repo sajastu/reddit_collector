@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update general_stat.py">
-      <change beforePath="$PROJECT_DIR$/general_stat.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_stat.py" afterDir="false" />
-    </list>
+    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update general_stat.py" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +44,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633053958970</updated>
-      <workItem from="1633053962578" duration="8248000" />
+      <workItem from="1633053962578" duration="8549000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1633059478998</created>
@@ -209,7 +207,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633062722851</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="update general_stat.py">
+      <created>1633063148637</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1633063148637</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update general_stat.py">
+      <created>1633063183969</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1633063183969</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -117,6 +117,10 @@ idx = 0
 # id_files = id_files
 cc = {'train':0, 'test':0, 'val': 0}
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
+    if cc['test'] == 1 and cc['train'] == 1:
+        break
+    elif cc['train'] == 1 and 'train' in id_files[idx]:
+        continue
     if 'train' in id_files[idx]:
         set = 'train'
     elif 'val' in id_files[idx]:
@@ -127,8 +131,7 @@ for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
         v['set'] = set
         ds[k] = v
     cc[set] +=1
-    if cc['test']==1 and cc['train'] ==1:
-        break
+
     idx+=1
 
 pool.close()
