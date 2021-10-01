@@ -1,0 +1,8 @@
+beautifulsoup4
+lxml
+requests
+zipfile36
+tqdm
+zstandard
+xtarfile
+bz2file
