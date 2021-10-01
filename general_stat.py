@@ -153,7 +153,8 @@ sents_len_list = []
 vocabulary = {
     'train': {},
     'val': {},
-    'test': {}
+    'test': {},
+    'common': 0
 }
 
 src_stat = {
@@ -199,10 +200,15 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
     # adding to vocab
     whole_tokens = out['src_tkns'] + out['tgt_tkns']
     for tkn in whole_tokens:
-        if tkn not in  vocabulary[set].keys():
+        if tkn not in vocabulary[set].keys():
             vocabulary[set][tkn] = 1
         else:
             vocabulary[set][tkn] += 1
+
+    if set == 'train' or set == 'test':
+        for tkn in whole_tokens:
+            if tkn in vocabulary['train'].keys() and tkn in vocabulary['test'].keys():
+                vocabulary['common'] += 1
 
     src_stat['src_tkns_len'] += out['src_tkns_len']
     src_stat['src_sents_len'] += out['src_sents_len']
@@ -237,6 +243,10 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
             newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
             print(f'Occurring +10 times: count: {len(newDict.keys())}')
 
+        print(
+            vocabulary['common'] / len(list(vocabulary['test'].keys())
+        ))
+
 
 
 
@@ -260,11 +270,9 @@ for set in ["train", "val", "test"]:
     newDict = dict(filter(lambda elem: elem[1] >= 10, all_vocabs_for_set.items()))
     print(f'Occurring +10 times: count: {len(newDict.keys())}')
 
-common = list(filter(lambda x:x in list(vocabulary['train'].keys()), list(vocabulary['test'].keys())))
-
 print('Calculating train and test vocab overlap')
 print(
-    len(common) / len(list(vocabulary['test'].keys())
+    vocabulary['common'] / len(list(vocabulary['test'].keys())
 ))
 
 print('Saving to pickle...')
