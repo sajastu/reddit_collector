@@ -60,12 +60,14 @@ def _mp_m_process(param):
         for token in sentence:
             sent_tkns.append(token.text)
         tgt_tkns.append(sent_tkns)
+    srctkns = []
+    tgttkns = []
     import pdb;pdb.set_trace()
 
     return {
         'set': ent['set'],
-        'src_tkns': src_tkns,
-        'tgt_tkns': tgt_tkns,
+        'src_tkns': srctkns.extend(s for s in src_tkns),
+        'tgt_tkns': tgttkns.extend(s for s in src_tkns),
         'src_tkns_len': sum([len(s) for s in src_tkns]),
         'tgt_tkns_len': sum([len(t) for t in tgt_tkns]),
         'src_sent_len_list' : [len(s) for s in src_tkns],

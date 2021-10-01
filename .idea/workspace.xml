@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update general_stat.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/general_stat.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_stat.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +46,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633053958970</updated>
-      <workItem from="1633053962578" duration="6211000" />
+      <workItem from="1633053962578" duration="6568000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1633059478998</created>
@@ -77,7 +76,28 @@
       <option name="project" value="LOCAL" />
       <updated>1633060492165</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update general_stat.py">
+      <created>1633060865227</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1633060865227</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update general_stat.py">
+      <created>1633060976035</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1633060976036</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update general_stat.py">
+      <created>1633061038584</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1633061038584</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
