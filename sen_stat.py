@@ -4,6 +4,7 @@ import numpy as np
 objects = {}
 with (open("stats/tldrHQ.pkl", "rb")) as openfile:
     objects = pickle.load(openfile)
+    import pdb;pdb.set_trace()
 
 
 src_sent_len = np.asarray(objects['src_sent_len_list'])
