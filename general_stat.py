@@ -116,12 +116,10 @@ pool = Pool(cpu_count())
 idx = 0
 # id_files = id_files
 cc = {'train':0, 'test':0, 'val': 0}
-for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
-    if cc['test'] == 1:
-        break
-    # elif cc['train'] > 0 and 'train' in id_files[idx]:
-    #     continue
+id_files = ['/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/test.13.json',
+            '/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/train.3.json']
 
+for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
         set = 'train'
     elif 'val' in id_files[idx]:
@@ -137,6 +135,8 @@ for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
 
 pool.close()
 pool.join()
+
+
 
 pool = Pool(cpu_count())
 
