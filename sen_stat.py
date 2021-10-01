@@ -7,8 +7,8 @@ with (open("stats/tldrHQ.pkl", "rb")) as openfile:
     import pdb;pdb.set_trace()
 
 
-src_sent_len = np.asarray(objects['src_sent_len_list'])
-tgt_sent_len = np.asarray(objects['tgt_sent_len_list'])
+src_sent_len = np.asarray(objects['src_stats']['src_sent_len_list'])
+tgt_sent_len = np.asarray(objects['tgt_stats']['tgt_sent_len_list'])
 print('src')
 print(np.mean(src_sent_len))
 print(np.min(src_sent_len))
