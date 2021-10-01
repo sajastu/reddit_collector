@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 
 objects = {}
-with (open("myfile", "rb")) as openfile:
+with (open("stats/tldrHQ.pkl", "rb")) as openfile:
     objects = pickle.load(openfile)
 
 
