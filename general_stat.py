@@ -244,7 +244,7 @@ print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c i
       f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, c in counts.items()])}')
 
 print(
-    f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, count in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, count in counts.items()]))}')
+    f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()]))}')
 
 print('Saving to pickle...')
 if not os.path.exists("stats/"):
