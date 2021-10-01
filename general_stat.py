@@ -116,8 +116,8 @@ pool = Pool(cpu_count())
 idx = 0
 # id_files = id_files
 cc = {'train':0, 'test':0, 'val': 0}
-id_files = ['/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/test.13.json',
-            '/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/train.3.json']
+# id_files = ['/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/test.13.json',
+#             '/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQ/dataset-m0/train.3.json']
 
 for out in tqdm(pool.imap_unordered(mp_read, id_files), total=len(id_files)):
     if 'train' in id_files[idx]:
@@ -220,7 +220,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
     counts[split]+=1
 
-    if sum([c for set, c in counts.items()]) % 2000 == 0:
+    if sum([c for set, c in counts.items()]) % 20000 == 0:
         print('------- General Stats -------')
 
         print(f'iteration {sum([c for set, c in counts.items()])//200000}')
@@ -250,7 +250,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
 
 
 # if sum([c for set, count in counts.items()]) % len(ds_th_lst) == 0:
-print(f'iteration {(sum([c for set, c in counts.items()]) // 2000 )+ 1}')
+print(f'iteration {(sum([c for set, c in counts.items()]) // 20000 )+ 1}')
 print(
     f'Count = {sum([c for set, c in counts.items()])}: train: {counts["train"]}, val: {counts["val"]}, test: {counts["test"]}')
 print(f'Average tokens ---> src {src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])} '
@@ -271,8 +271,8 @@ for split in ["train", "val", "test"]:
 
 print('Calculating train and test vocab overlap')
 print(
-    vocabulary['common'] / len(list(vocabulary['test'].keys())
-))
+    f'Overlap: {len(common) / len(list(vocabulary["test"].keys()))}'
+)
 
 print('Saving to pickle...')
 if not os.path.exists("stats/"):
