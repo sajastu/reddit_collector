@@ -206,7 +206,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
             vocabulary[set][tkn] += 1
 
     if set == 'train' or set == 'test':
-        for tkn in whole_tokens:
+        for tkn in set(whole_tokens):
             if tkn in vocabulary['train'].keys() and tkn in vocabulary['test'].keys():
                 vocabulary['common'] += 1
 
