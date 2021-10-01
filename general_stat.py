@@ -217,7 +217,7 @@ for out in tqdm(pool.imap_unordered(_mp_m_process, ds_th_lst), total=len(ds_th_l
         print(f'Average tokens ---> src {src_stat["src_sents_len"] / sum([c for set, c in counts.items()])} '
               f'and tgt: {tgt_stat["tgt_sents_len"] / sum([c for set, c in counts.items()])}')
 
-        print(f'Compression ratio: {(src_stat["src_tkns_len"] [0] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] [1] / sum([c for set, c in counts.items()]))}')
+        print(f'Compression ratio: {(src_stat["src_tkns_len"] / sum([c for set, c in counts.items()])) / (tgt_stat["tgt_tkns_len"] / sum([c for set, c in counts.items()]))}')
 
 
         print('------- Vocab Stats -------')
