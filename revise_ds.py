@@ -5,10 +5,10 @@ from tqdm import tqdm
 from multiprocessing import cpu_count, Pool
 
 def mp_change(params):
-    out = {}
     split_id = ''
+    out = []
     with open(params) as fR:
-        for l in tqdm(fR):
+        for l in fR:
             ent = json.loads(l.strip())
             if 'train' in params:
                 split_id = 'train'
@@ -17,11 +17,12 @@ def mp_change(params):
             elif 'test'in params:
                 split_id = 'test'
             ent['id'] = split_id + "-TLDR" + ent['id'].split("TLDR")[1].replace('.json', '')
+            out.append(ent)
 
-    return ent, params
+    return out, params
 
 def mp_write(params):
-    wr_dir, ent = params
+    ent, wr_dir = params
 
     with open(wr_dir, mode='a') as fw:
         json.dump(ent, fw)
@@ -43,7 +44,8 @@ print('reading entire dataset...')
 pool = Pool(cpu_count())
 files_all = []
 for out in tqdm(pool.imap_unordered(mp_change, id_files), total=len(id_files)):
-    files_all.append((out[1], out[0]))
+    for out in out[0]:
+        files_all.append((out, out[1]))
 
 pool.close()
 pool.join()
