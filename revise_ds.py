@@ -49,6 +49,9 @@ for out in tqdm(pool.imap_unordered(mp_change, id_files), total=len(id_files)):
 pool.close()
 pool.join()
 
+print('{} entities loaded...'.format(len(files_all)))
+
+
 # Now saving the revised ds
 
 
