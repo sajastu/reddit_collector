@@ -18,13 +18,13 @@ def mp_change(params):
                 split_id = 'test'
             ent['id'] = split_id + "-TLDR" + ent['id'].split("TLDR")[1].replace('.json', '')
 
-    return out, params
+    return ent, params
 
 def mp_write(params):
     wr_dir, ent = params
 
     with open(wr_dir, mode='a') as fw:
-        json.dump(fw)
+        json.dump(ent, fw)
         fw.write('\n')
 
 # for j, d in enumerate(['m0', 'm1', 'm2', 'm3', 'm4', 'm2021', 'm6']):
@@ -44,7 +44,6 @@ pool = Pool(cpu_count())
 files_all = []
 for out in tqdm(pool.imap_unordered(mp_change, id_files), total=len(id_files)):
     files_all.append((out[1], out[0]))
-
 
 pool.close()
 pool.join()
