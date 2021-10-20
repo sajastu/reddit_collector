@@ -65,10 +65,9 @@ if not os.path.exists("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/t
 
 pool_n = Pool(cpu_count())
 
-for _ in tqdm(pool.imap_unordered(mp_write, files_all), total=len(files_all)):
+for _ in tqdm(pool_n.imap_unordered(mp_write, files_all), total=len(files_all)):
     pass
 
 
-
-
-
+pool_n.close()
+pool_n.join()
