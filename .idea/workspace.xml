@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update general_stat.py">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/revise_ds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reddit_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit_processor.py" afterDir="false" />
+    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update revise_ds.py">
+      <change beforePath="$PROJECT_DIR$/revise_ds.py" beforeDir="false" afterPath="$PROJECT_DIR$/revise_ds.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +62,7 @@
       <workItem from="1633725954494" duration="598000" />
       <workItem from="1633926789337" duration="599000" />
       <workItem from="1633979846151" duration="597000" />
-      <workItem from="1634751613769" duration="1197000" />
+      <workItem from="1634751613769" duration="1501000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1633059478998</created>
@@ -349,7 +344,42 @@
       <option name="project" value="LOCAL" />
       <updated>1633078869994</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="update revise_ds.py">
+      <created>1634753161406</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753161406</updated>
+    </task>
+    <task id="LOCAL-00042" summary="update revise_ds.py">
+      <created>1634753208561</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753208561</updated>
+    </task>
+    <task id="LOCAL-00043" summary="update revise_ds.py">
+      <created>1634753246652</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753246652</updated>
+    </task>
+    <task id="LOCAL-00044" summary="update revise_ds.py">
+      <created>1634753274446</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753274446</updated>
+    </task>
+    <task id="LOCAL-00045" summary="update revise_ds.py">
+      <created>1634753331421</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753331421</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,6 +400,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="update general_stat.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="update general_stat.py" />
+    <MESSAGE value="update revise_ds.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="update revise_ds.py" />
   </component>
 </project>
