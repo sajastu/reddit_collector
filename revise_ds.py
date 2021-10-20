@@ -52,7 +52,7 @@ pool.join()
 # Now saving the revised ds
 
 
-if not os.path.exists("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrQLast/"):
+if not os.path.exists("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrHQ/"):
     os.makedirs("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrHQ/dataset-m0/")
     os.makedirs("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrHQ/dataset-m1/")
     os.makedirs("/mnt/ilcompfad1/user/dernonco/backup-interns/2021/sajad/tldrHQ/dataset-m2/")
