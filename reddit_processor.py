@@ -241,7 +241,7 @@ class RedditProcessor(Reddit):
         pool = Pool(self.args.n_cpus)
         for processed_reddit in tqdm(pool.imap_unordered(self._process_bulk, bulk_files), total=len(bulk_files)):
             ctr_processed += processed_reddit[1]
-
+    
             if len(processed_reddit[0]) > 0:
                 ctr_processed_written += len(processed_reddit[0])
                 all_tldrs.extend(processed_reddit[0])
