@@ -3,10 +3,10 @@ import os.path
 from tqdm import tqdm
 
 
-def mp_change(param):
+def mp_change(params):
     out = {}
     split_id = ''
-    with open(param) as fR:
+    with open(params) as fR:
         for l in tqdm(fR):
             ent = json.loads(l.strip())
             if 'train' in params:
