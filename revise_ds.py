@@ -15,7 +15,6 @@ def mp_change(params):
                 split_id = 'valid'
             elif 'test'in params:
                 split_id = 'test'
-            import pdb;pdb.set_trace()
             ent['id'] = split_id + "-TLDR" + ent['id'].split("TLDR")[1].replace('.json', '')
 
     return out, param
@@ -38,7 +37,6 @@ for root, dirs, files in os.walk(f'/mnt/ilcompfad1/user/dernonco/backup-interns/
     for name in files:
         if '.json' in name:
             id_files.append(os.path.join(root, name))
-            mp_change(id_files[-1])
 
 print('reading entire dataset...')
 pool = Pool(cpu_count())
