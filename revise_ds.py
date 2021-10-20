@@ -2,7 +2,7 @@ import json
 import os.path
 from tqdm import tqdm
 
-import multiprocessing
+from multiprocessing import cpu_count, Pool
 
 def mp_change(params):
     out = {}
