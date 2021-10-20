@@ -44,8 +44,8 @@ print('reading entire dataset...')
 pool = Pool(cpu_count())
 files_all = []
 for out in tqdm(pool.imap_unordered(mp_change, id_files), total=len(id_files)):
-    for out in out[0]:
-        files_all.append((out, out[1]))
+    for o in out[0]:
+        files_all.append((o, out[1]))
 
 pool.close()
 pool.join()
