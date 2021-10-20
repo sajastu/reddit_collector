@@ -14,7 +14,7 @@ def mp_change(param):
                 split_id = 'valid'
             elif 'test'in params:
                 split_id = 'test'
-
+            import pdb;pdb.set_trace()
             ent['id'] = split_id + "-TLDR" + ent['id'].split("TLDR")[1].replace('.json', '')
 
     return out, param
