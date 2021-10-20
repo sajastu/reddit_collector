@@ -18,7 +18,7 @@ def mp_change(params):
                 split_id = 'test'
             ent['id'] = split_id + "-TLDR" + ent['id'].split("TLDR")[1].replace('.json', '')
 
-    return out, param
+    return out, params
 
 def mp_write(params):
     wr_dir, ent = params
