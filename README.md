@@ -12,3 +12,23 @@ You may download the introduced datasets from Google Drive links below:
 
 ## Reddit miner
 The code will get updated soon. 
+
+## Citation
+
+If you intend to use these datasets, please cite the following research paper: 
+
+````
+@inproceedings{Sotudeh2021Tldr9,
+    title = "TLDR9+: A Large Scale Resource for Extreme Summarization of Social Media Posts",
+    author = "Sotudeh, Sajad  and
+      Deilamsalehy, Hanieh  and
+      Dernoncourt, Franck  and
+      Goharian, Nazli",
+    booktitle = "Proceedings of the Third Workshop on New Frontiers in Summarization",
+    month = nov,
+    year = "2021",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.newsum-1.15",
+    pages = "142--151",
+}
+````
