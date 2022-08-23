@@ -52,3 +52,6 @@ If you intend to use these datasets, please cite the following research paper:
     pages = "142--151",
 }
 ````
+
+## Contact
+Please contact [Sajad Sotudeh](sajad@ir.cs.gerogetown.edu) in case you have any question.
