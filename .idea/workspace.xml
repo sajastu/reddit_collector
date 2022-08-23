@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="update revise_ds.py">
-      <change beforePath="$PROJECT_DIR$/revise_ds.py" beforeDir="false" afterPath="$PROJECT_DIR$/revise_ds.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/reddit_collector.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/reddit_collector.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,23 +33,25 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1ysxBDnztl1vJ61xYvU6mOi0vSD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -62,21 +67,15 @@
       <workItem from="1633725954494" duration="598000" />
       <workItem from="1633926789337" duration="599000" />
       <workItem from="1633979846151" duration="597000" />
-      <workItem from="1634751613769" duration="1936000" />
-    </task>
-    <task id="LOCAL-00004" summary="update general_stat.py">
-      <created>1633060492165</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1633060492165</updated>
-    </task>
-    <task id="LOCAL-00005" summary="update general_stat.py">
-      <created>1633060865227</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1633060865227</updated>
+      <workItem from="1634751613769" duration="2796000" />
+      <workItem from="1635181792198" duration="562000" />
+      <workItem from="1635287326943" duration="426000" />
+      <workItem from="1637254503173" duration="14000" />
+      <workItem from="1637342340737" duration="8000" />
+      <workItem from="1640680622258" duration="3000" />
+      <workItem from="1641159302802" duration="6000" />
+      <workItem from="1651259875952" duration="765000" />
+      <workItem from="1661271881245" duration="745000" />
     </task>
     <task id="LOCAL-00006" summary="update general_stat.py">
       <created>1633060976035</created>
@@ -407,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1634753619068</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="update revise_ds.py">
+      <created>1634753805022</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753805022</updated>
+    </task>
+    <task id="LOCAL-00054" summary="update revise_ds.py">
+      <created>1634753844826</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1634753844826</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +436,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
