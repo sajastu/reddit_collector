@@ -1,6 +1,6 @@
 # TLDR9+ and TLDRHQ
 
-This resource contains the resources introduced in [TLDR9+: A Large Scale Resource for Extreme Summarization of Social Media Posts](https://aclanthology.org/2021.newsum-1.15/), including two Reddit-based TLDR summarization datasets. For more information about the construction stages of these datasets, please refer to the main paper. 
+This resource contains the resources introduced in [_TLDR9+: A Large Scale Resource for Extreme Summarization of Social Media Posts_](https://aclanthology.org/2021.newsum-1.15/), including two Reddit-based TLDR summarization datasets. For more information about the construction stages of these datasets, please refer to the main paper. 
 
 ## Dataset links
 You may download the introduced datasets from Google Drive links below:
