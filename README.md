@@ -26,7 +26,7 @@ Each instance of TLDR9+ and TLDRHQ in the dataset has the following attributes:
 
 ````
 Notes:
-* `id` is not the actual ID of the post in the Reddit discussion forum, but it's rather a  automatically generated ID.
+* `id` is not the actual ID of the post in the Reddit discussion forum, but it's rather a generated ID that follows a specific format. For instance, `*RS*` (`*RC*`) format shows that the instance is of type Submission (Comment). 
 * `document` is split by the sentences; hence, you will find `</s><s>` tokens within the document's text, that indicates the sentence boundaries.
 
 
