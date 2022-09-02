@@ -1,5 +1,4 @@
 import glob
-import glob
 import json
 import pickle
 from functools import reduce
