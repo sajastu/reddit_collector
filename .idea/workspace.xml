@@ -4,9 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="formatting">
+    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="added dataset structure info + contact info">
+      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reddit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reddit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/add_rg_to_ds.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/check_file_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl_rest.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dl_uncompress.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dl_uncompress.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_downloader.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_stat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mv_files.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oracle_rouge.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepare_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/prepare_tldr_for_tokenization.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reddit_cm_aggregator.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit_cm_aggregator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reddit_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit_processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refine_tldr.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/revise_ds.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sen_stat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untied_all_comments.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_file_links.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,17 +63,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "web.server"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -75,35 +99,8 @@
       <workItem from="1641159302802" duration="6000" />
       <workItem from="1651259875952" duration="765000" />
       <workItem from="1661271881245" duration="1220000" />
-      <workItem from="1661280575833" duration="681000" />
-    </task>
-    <task id="LOCAL-00009" summary="update general_stat.py">
-      <created>1633061578256</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061578256</updated>
-    </task>
-    <task id="LOCAL-00010" summary="update general_stat.py">
-      <created>1633061668021</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061668021</updated>
-    </task>
-    <task id="LOCAL-00011" summary="update general_stat.py">
-      <created>1633061750504</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061750504</updated>
-    </task>
-    <task id="LOCAL-00012" summary="update general_stat.py">
-      <created>1633061823249</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061823249</updated>
+      <workItem from="1661280575833" duration="1251000" />
+      <workItem from="1662045423238" duration="12674000" />
     </task>
     <task id="LOCAL-00013" summary="update general_stat.py">
       <created>1633061862152</created>
@@ -420,7 +417,35 @@
       <option name="project" value="LOCAL" />
       <updated>1661272925566</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="formatting">
+      <created>1661281259801</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1661281259801</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added dataset structure info + contact info">
+      <created>1661281353444</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1661281353444</updated>
+    </task>
+    <task id="LOCAL-00060" summary="added dataset structure info + contact info">
+      <created>1661281487984</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1661281487985</updated>
+    </task>
+    <task id="LOCAL-00061" summary="added dataset structure info + contact info">
+      <created>1661281530465</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1661281530465</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,6 +469,7 @@
     <MESSAGE value="added dataset links" />
     <MESSAGE value="added citation info" />
     <MESSAGE value="formatting" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatting" />
+    <MESSAGE value="added dataset structure info + contact info" />
+    <option name="LAST_COMMIT_MESSAGE" value="added dataset structure info + contact info" />
   </component>
 </project>

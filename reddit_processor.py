@@ -1,12 +1,7 @@
-import argparse
-import glob
 import json
-import multiprocessing
 import os
-import pickle
 import re
 from multiprocessing import Pool
-from os.path import join as pjoin
 
 from tqdm import tqdm
 
@@ -35,12 +30,12 @@ class RedditProcessor(Reddit):
             for i, kw in enumerate(self.tldr_keywords):
                 if kw in text.lower():
                     return i
+
             # tldr splitter not found
             text = text.lower()
             result = pattern.findall(text.lower())
             if len(result) == 1:
-                # new splitter should be added to the self.tldr_keywords
-                # self.tldr_keywords.append(result[0])
+                # Keeping track of an unseen splitter.
                 with open('tldr_kw.txt', mode='a') as fR:
                     fR.write(result[0])
                     fR.write('\n')
@@ -61,95 +56,68 @@ class RedditProcessor(Reddit):
             return tldr
 
         def get_tldr_from_post(post_body, kw_idx):
-
-            # post_text = reddit_post['selftext'].lower() # for submissions
-            post_text = post_body.lower() # for comments
-
-            p_text = post_text.split(self.tldr_keywords[kw_idx])[0]
-            tldr = post_body.lower().split(self.tldr_keywords[kw_idx])[1]
-
-            tldr = refine_tldr(tldr)
-
-            return p_text, tldr
+            return get_tldr_from_post_str_splitter(post_body, self.tldr_keywords[kw_idx])
 
         def get_tldr_from_post_str_splitter(post_body, splitter):
-            # post_text = reddit_post['selftext'].lower() # for submissions
-            post_text = post_body.lower()  # for comments
+            # user_post = reddit_post['selftext'].lower() # for submissions
+            post_text_uncased = post_body.lower()  # for comments
 
-            p_text = post_text.split(splitter)[0]
-            tldr = post_body.lower().split(splitter)[1]
+            if not self.args.lower:
+                post_text_cased = post_body
+                user_post = post_text_cased[:len(post_text_uncased.split(splitter)[0])]
+                tldr = post_text_cased[len(post_text_uncased.split(splitter)[0])+ len(splitter):]
+
+            else:
+                user_post = post_text_uncased.split(splitter)[0]
+                tldr = post_body.split(splitter)[1]
 
             tldr = refine_tldr(tldr)
 
-            return p_text, tldr
+            return user_post.strip(), tldr.strip()
 
         tldr_portion_posts = []
         processed = 0
         try:
-            with open(param, mode='r') as rsFile:
-                # num_lines = sum([1 for _ in open(param)])
-                # print(num_lines)
-                # for line in tqdm(rsFile, total=num_lines):
-                for line in tqdm(rsFile):
+            with open(param, mode='r') as redditFile:
+                is_comment_file = ('RC' in param)
+                for line in tqdm(redditFile):
                     processed += 1
-                    reddit_post = json.loads(line)
-                    # post_body = reddit_post['body'].replace('\n', ' ').lower()
-                    post_body = reddit_post['selftext'].replace('\n', ' ').lower()
-                    kw_idx = _have_tldr(post_body) # for comments
-                    if isinstance(kw_idx, int) and kw_idx > -1:
-                        post_text, tldr = get_tldr_from_post(post_body, kw_idx)
-                        if len(tldr.split(' ')) > 4 and len(tldr.split(' ')) < len(post_text.split(' ')):
-                            tldr_portion_posts.append(
-                                {
-                                'title':reddit_post['title'].strip() if 'title' in reddit_post.keys() else None,
-                                # 'title': None,
-                               'src': post_text.strip(),
-                               'tldr': tldr.strip(),
-                               'date': param.split('/')[-1]
-                                }
-                            )
+                    reddit_instance = json.loads(line)
 
-                            self._mp_write((
-                                param.split('/')[-1] + f'-cm-{len(tldr_portion_posts)}',
-                                {
-                                    'title': reddit_post['title'].strip() if 'title' in reddit_post.keys() else None,
-                                    # 'title': None,
-                                    'src': post_text.strip(),
-                                     'tldr': tldr.strip(),
-                                     'date': param.split('/')[-1]
-                                }
-                            ))
+                    user_post = reddit_instance['selftext'].replace('\n', ' ') if not is_comment_file \
+                        else reddit_instance['body'].replace('\n', ' ')
+
+                    kw_idx = _have_tldr(user_post)
+                    tldr = None
+                    if isinstance(kw_idx, int) and kw_idx > -1:
+                        user_post, tldr = get_tldr_from_post(user_post, kw_idx)
 
                     elif kw_idx != -1 and isinstance(kw_idx, str):
                         # splitter is returned
-                        post_text, tldr = get_tldr_from_post_str_splitter(post_body, kw_idx)
-                        if len(tldr.split(' ')) > 4 and len(tldr.split(' ')) < len(post_text.split(' ')):
-                            tldr_portion_posts.append(
-                                {
-                                    'title':reddit_post['title'].strip() if 'title' in reddit_post.keys() else None,
-                                    # 'title': None,
-                                    'src': post_text.strip(),
-                                    'tldr': tldr.strip(),
-                                    'date': param.split('/')[-1]
-                                }
-                            )
+                        user_post, tldr = get_tldr_from_post_str_splitter(user_post, kw_idx)
 
-                            self._mp_write((
-                                param.split('/')[-1] + f'-cm-{len(tldr_portion_posts)}',
-                                {
-                                    'title': reddit_post['title'].strip() if 'title' in reddit_post.keys() else None,
-                                    # 'title': None,
-                                    'src': post_text.strip(),
-                                    'tldr': tldr.strip(),
-                                    'date': param.split('/')[-1]
-                                }
-                            ))
+                    # should add another check to take away noisy instances...
+                    # if the tldr length (summary) is less than the user_post then add the instance; otherwise, drop it
+                    if tldr and self.args.tldr_th < len(tldr.split(' ')) < len(user_post.split(' ')):
+                        processed_instance = {
+                                'title':reddit_instance['title'].strip() if 'title' in reddit_instance.keys() else None,
+                                'src': user_post.strip(),
+                                'tldr': tldr.strip(),
+                                'date': param.split('/')[-1]
+                        }
+                        tldr_portion_posts.append(
+                            processed_instance
+                        )
 
-                    else:
-                        continue
+                        self._mp_write((
+                            param.split('/')[-1] + f'-{"cm" if is_comment_file else "sbm"}-{len(tldr_portion_posts)}',
+                            processed_instance
+                        ))
+
             return tldr_portion_posts, processed
 
         except Exception as e:
+            # keeping track of the errors in a txt file.
             with open('error_preprocess.txt', mode='a') as fA:
                 fA.write(param + '\t' + str(e))
                 fA.write('\n')
@@ -164,89 +132,34 @@ class RedditProcessor(Reddit):
 
     def _run(self):
         """
-            # reading bulk files from `args.base_dir` into a list
+            # reading bulk files from `args.read_dir` into a list
             # this list will then be used for multiprocessing
             # each CPU will process one bulk data, and after processing,
             # it will write a single file to the `args.write_dir` directory.
+            # we are keeping track of the visited files to prevent
         """
-
-
-        # bulk_files = []
-
-        # with open('error_preprocess_init.txt') as fR:
-        #     num_lines = sum([1 for _ in open('error_preprocess_init.txt')])
-        #     for l in tqdm(fR, total=num_lines):
-        #         src_file_dir = l.split('\t')[0].strip()
-        #         if src_file_dir not in bulk_files:
-        #             bulk_files.append(src_file_dir)
-                    # p = multiprocessing.Pool(4)
-                    # src_file_name = src_file_dir.split('/')[-1]
-                    # try:
-                    #     p.map(os.remove, glob.glob(f'/home/sotudehg0/tldr_data_comments_full/TLDR_{src_file_name}-cm-*.json'))
-                    # except:
-                    #     print("No file to delete! :)")
-        ctr_processed = 0
-        ctr_processed_written = 0
-
-        # for f in ["/mnt/ilcompf0d0/user/dernonco/corpora/reddit/original/comments/missed_comments/RC_2020-04-26"]:
-        #     processed_reddit = self._process_bulk(f)
-        #     ctr_processed += processed_reddit[1]
-        #     if len(processed_reddit[0]) > 0:
-        #         ctr_processed_written += len(processed_reddit[0])
-
-        # pool = Pool(self.args.n_cpus)
-        # for processed_reddit in tqdm(pool.imap_unordered(self._process_bulk, bulk_files), total=len(bulk_files)):
-        #     ctr_processed += processed_reddit[1]
-        #
-        #     if len(processed_reddit[0]) > 0:
-        #         ctr_processed_written += len(processed_reddit[0])
-        #
-        # pool.close()
-        # pool.join()
-        #
-        # print('------------')
-        # print(f'{ctr_processed} reddit posts processed, of which {ctr_processed_written}  '
-        #       f'(i.e., {round((ctr_processed_written / ctr_processed) * 100, 2)}%)  is written into {self.args.write_dir}')
-        #
-        # print('-------------')
-
-
-        ##################################################
 
         bulk_files = []
         visited_names = []
         for root, dirs, files in os.walk(self.args.read_dir, topdown=False):
             for name in files:
-                if '.' not in name and name not in visited_names and 'RS' in name:
+                if '.' not in name and name not in visited_names:
                     bulk_files.append(os.path.join(root, name))
                     visited_names.append(name)
+                    # self._process_bulk(bulk_files[-1]) # for debug
 
         print(f'Processing {len(bulk_files)} bulk files started...')
         ctr_processed = 0
         ctr_processed_written = 0
 
-        # try:
-        # for f in tqdm(bulk_files, total=len(bulk_files)):
-        #     reddit_post = self._process_bulk(f)
-
-        # for f in ["/mnt/ilcompf0d0/user/dernonco/corpora/reddit/original/comments/missed_comments/RC_2020-04-26"]:
-        #     processed_reddit = self._process_bulk(f)
-        #     ctr_processed += processed_reddit[1]
-        #     if len(processed_reddit[0]) > 0:
-        #         ctr_processed_written += len(processed_reddit[0])
-
-
-        #
         all_tldrs = []
         pool = Pool(self.args.n_cpus)
+
         for processed_reddit in tqdm(pool.imap_unordered(self._process_bulk, bulk_files), total=len(bulk_files)):
             ctr_processed += processed_reddit[1]
-    
             if len(processed_reddit[0]) > 0:
                 ctr_processed_written += len(processed_reddit[0])
                 all_tldrs.extend(processed_reddit[0])
-
-
         pool.close()
         pool.join()
 
@@ -290,12 +203,9 @@ class RedditProcessor(Reddit):
     def _run_enumerate(self):
         bulk_files = []
         visited_names = []
-        c=0
-
         if os.path.isfile('all_data_count.json'):
             with open('all_data_count.json') as fR:
                 all_count = json.load(fR)
-
         else:
             all_count = {
                 'submissions':
@@ -310,12 +220,6 @@ class RedditProcessor(Reddit):
                 if '.' not in name and name not in visited_names and name not in all_count['explored']:
                     bulk_files.append(os.path.join(root, name))
                     visited_names.append(name)
-                    # self._process_bulk_enumerate(bulk_files[-1])
-                    # c+=1
-                # if c==2:
-                #     break
-            # if c == 2:
-            #     break
 
 
         pool = Pool(self.args.n_cpus)

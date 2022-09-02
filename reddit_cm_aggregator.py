@@ -1,14 +1,15 @@
-import argparse
+import glob
 import glob
 import json
 import pickle
+from functools import reduce
 from multiprocessing import Pool
 from os.path import join as pjoin
 
 from tqdm import tqdm
 
 from Reddit import Reddit
-from functools import reduce
+
 
 def reducer(accumulator, element):
     for key, value in element.items():

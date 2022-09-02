@@ -30,8 +30,34 @@ Notes:
 * `document` is split by the sentences; hence, you will find `</s><s>` tokens within the document's text, indicating the sentence boundaries.
 
 
-## Reddit miner
-The code will get updated soon. 
+## Reddit Miner
+We release the source implementation to collect the TL;DR instances (i.e., user_post and TL;DR summary pairs) from Pushshift data repository. 
+
+### How to run 
+First, install the required package by running the following:
+
+````
+pip install -r requirements.txt
+````
+As the Pushshift files are quite large, we use the [GNU Parallel](https://www.gnu.org/software/parallel/) shell tool for parallel processing. Hence, you will need install this shell tool. 
+
+For quick start, simply run: `bash dl_uncompress.sh`. The `dl_uncompress.sh` script calls the utilities to download, uncompress, and mine the instances to create the
+TL;DR data collection.
+
+Some notes about the implementation are outlined below:
+
+- `fetch_file_links.py` gathers the link of each compressed file (either comments/submissions that should be specified by the user) specified within a timeframe. It specifically takes in the following arguments:
+  * `-scrap`: choose between _comments_ or _submissions_. Default is set to _comments_.
+  * `-start_date`: the starting date in the format of `YYYY-MM` (e.g. 2019-04).
+  * `-end_date`: the ending date in the format of `YYYY-MM` (e.g. 2020-06).
+
+
+- `main.py` is the main class that calls different utilities to filter the Reddit posts to those with TL;DRs. Arguments are listed below:
+  - `-mode`: specifies the mode of the processing. It can be either _"preprocess"_ or _"comment_agg"_
+  - `-read_dir`: the input directory, where all uncompressed files Reddit files are located in.  
+  - `-write_dir`: the output directory to write the filtered instances one-by-one.
+  - `-tldr_th`: word threshold for filtering TL;DRs. The instances that do not pass this threshold will be dropped.
+  - `-lower`: a flag indicating either cased or uncased instances should be mined.
 
 ## Citation
 

@@ -1,5 +1,3 @@
-from file_downloader import RedditDownloader
-
 
 class Reddit():
     def __init__(self, args):
@@ -7,11 +5,6 @@ class Reddit():
 
     def _run(self):
         eval(f'self.{self.args.mode}()')
-
-    def download_and_unzip(self):
-        from file_downloader import RedditDownloader
-        rd = RedditDownloader(self.args)
-        rd._run()
 
     def preprocess(self):
         from reddit_processor import RedditProcessor

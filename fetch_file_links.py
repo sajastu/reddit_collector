@@ -1,25 +1,15 @@
 
 
-
-
-
-
-
 import argparse
-import glob
-import os
-import shutil
-import sys
-
-from bs4 import BeautifulSoup
-
-import urllib.request
 import datetime
-import requests
+import os
 import pathlib
+import shutil
+import urllib.request
 
+import requests
+from bs4 import BeautifulSoup
 from tqdm import tqdm
-
 
 
 def validate_date(date_text, raise_error=False):
@@ -186,14 +176,22 @@ def fetch_links(homepage, start_date='2015-06', end_date='2099-12'):
     return fetched_links
 
 
-def validate_link(link):
-    if 'RC_2020-01.zst' in link or 'RC_2020-02.zst' in link or 'RC_2020-03.zst' in link \
-    or 'RC_2020-04.zst' in link or 'RC_2020-05.zst' in link or 'RC_2020-06.zst' in link \
-    or 'RC_2020-07.zst' in link or 'RC_2020-08.zst' in link or 'RC_2020-09.zst' in link \
-    or 'RC_2020-10.zst' in link or 'RC_2020-11.zst' in link or 'RC_2020-12.zst' in link:
-        return False
-    else:
+def validate_date(date_text, raise_error=False):
+    try:
+        datetime.datetime.strptime(date_text, '%Y-%m')
         return True
+    except ValueError:
+
+        try:
+            datetime.datetime.strptime(date_text, '%Y-%m-%d')
+            return True
+
+        except:
+
+            if raise_error:
+                raise ValueError("Incorrect data format, should be YYYY-MM")
+            else:
+                return False
 
 
 
@@ -201,15 +199,13 @@ def validate_link(link):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-homepage", default='https://files.pushshift.io/reddit/comments/',
-                        type=str, help='Submission/Comments home dir')
+    parser.add_argument("-scrap", default='comments', type=str, help='Submission/Comments home dir')
     parser.add_argument("-start_date", default='2000-01', type=str, help='Date range --start; if not specified, will get through all dates')
     parser.add_argument("-end_date", default='2099-12', type=str, help='Date range --end; if not specified, will get through all dates')
 
     args = parser.parse_args()
-
+    args.homepage = f'https://files.pushshift.io/reddit/{args.scrap}/'
     links = fetch_links(args.homepage, args.start_date, args.end_date)
-
 
     ids = []
     ids_link = {}
@@ -217,19 +213,6 @@ if __name__ == '__main__':
         ids.append(l.split('/')[-1].split('.')[0].strip())
         ids_link[l.split('/')[-1].split('.')[0].strip()] = l
 
-    not_ids = {}
-    stored_files = []
-    for root, dirs, files in os.walk("/mnt/ilcompf0d0/user/dernonco/corpora/reddit/original/comments/", topdown=False):
-        for name in files:
-            if 'RC' in name and '.' in name:
-                if 'missed_comments' not in root:
-                    stored_files.append(os.path.join(root, name))
-
-        # print('HWWW')
-        # for name in dirs:
-        #     print(os.path.join(root, name))
-            # print(name)
-
-
-    for st in stored_files:
-        print(st)
+    for k, v in ids_link.items():
+        # if validate_link(v):
+        print(v)
