@@ -10,7 +10,7 @@ You may download the introduced datasets from Google Drive links below:
 | TLDR9+      |  9,227,437           | [Download](https://drive.google.com/file/d/1hYJqH-czgbw78rvxajzj56tDLr6lkdjh/view?usp=sharing) |
 | TLDRHQ      | 1,671,099           | [Download](https://drive.google.com/file/d/1jCi0Mn0k-pid5SSTafov11-e1A9LEZed/view?usp=sharing) |
 
-After downloading the datasets from links above, extract the dataset in the compressed file by `tar -xvf {DATASET_FILE}.tar`. You will then find different data splits (`datasets-m*/`) in the root directory, each with 25001 instances.
+After downloading the datasets from links above, un-tar the compressed file by `tar -xvf {DATASET_FILE}.tar`. You will then find different data splits (`datasets-m*/`) in the root directory, each with 25001 instances.
 
 ## Dataset structure
 Each instance of TLDR9+ and TLDRHQ in the dataset has the following attributes:
@@ -80,4 +80,4 @@ If you intend to use these datasets, please cite the following research paper:
 ````
 
 ## Contact
-Please contact [Sajad Sotudeh](sajad@ir.cs.gerogetown.edu) in case you have any question.
+Please contact Sajad Sotudeh ( `{firstname}@ir.cs.gerogetown.edu` ) in case you have any question(s).

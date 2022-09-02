@@ -4,32 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="added dataset structure info + contact info">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="78a5863a-7747-4fb2-be0a-df5e53d03324" name="Changes" comment="added miner instructions + refactoring">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reddit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Reddit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_rg_to_ds.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_file_list.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl_rest.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dl_uncompress.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dl_uncompress.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_downloader.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_stat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mv_files.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oracle_rouge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare_tldr_for_tokenization.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reddit_cm_aggregator.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit_cm_aggregator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reddit_processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/reddit_processor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/refine_tldr.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/revise_ds.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sen_stat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/untied_all_comments.py" beforeDir="false" afterPath="$PROJECT_DIR$/fetch_file_links.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,21 +76,7 @@
       <workItem from="1651259875952" duration="765000" />
       <workItem from="1661271881245" duration="1220000" />
       <workItem from="1661280575833" duration="1251000" />
-      <workItem from="1662045423238" duration="12674000" />
-    </task>
-    <task id="LOCAL-00013" summary="update general_stat.py">
-      <created>1633061862152</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061862152</updated>
-    </task>
-    <task id="LOCAL-00014" summary="update general_stat.py">
-      <created>1633061971799</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1633061971799</updated>
+      <workItem from="1662045423238" duration="13042000" />
     </task>
     <task id="LOCAL-00015" summary="update general_stat.py">
       <created>1633062020815</created>
@@ -445,7 +407,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661281530465</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="added miner instructions + refactoring">
+      <created>1662079597240</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1662079597240</updated>
+    </task>
+    <task id="LOCAL-00063" summary="added miner instructions + refactoring">
+      <created>1662079799326</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1662079799326</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,6 +446,7 @@
     <MESSAGE value="added citation info" />
     <MESSAGE value="formatting" />
     <MESSAGE value="added dataset structure info + contact info" />
-    <option name="LAST_COMMIT_MESSAGE" value="added dataset structure info + contact info" />
+    <MESSAGE value="added miner instructions + refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="added miner instructions + refactoring" />
   </component>
 </project>
