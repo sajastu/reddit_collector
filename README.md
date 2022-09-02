@@ -80,4 +80,4 @@ If you intend to use these datasets, please cite the following research paper:
 ````
 
 ## Contact
-Please contact Sajad Sotudeh ( `{firstname}@ir.cs.gerogetown.edu` ) in case you have any question(s).
+Please contact Sajad Sotudeh ( `{firstname}@ir.cs.georgetown.edu` ) in case you have any question(s).
