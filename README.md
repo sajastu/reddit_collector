@@ -15,16 +15,14 @@ After downloading the datasets from links above, un-tar the compressed file by `
 ## Dataset structure
 Each instance of TLDR9+ and TLDRHQ in the dataset has the following attributes:
 
-````
-{
-    "id": ID of the reddit post,
-    "document": User's post text,
-    "summary": Summary/TLDR of the written post,
-    "ext_labels": Extractive labels of the post's sentences.
-    "rg_labels": Rouge scores of the post's sentences.
-}
+* `id`: The ID of the reddit post,
+* `document`: User's post text (source),
+* `summary`: Summary/TL;DR of the user's post,
+* `ext_labels`: Extractive labels of the post's sentences.
+* `rg_labels`: The rouge scores of the post's sentences.
 
-````
+
+
 Notes:
 * `id` is not the actual ID of the post in the Reddit discussion forum, but it's rather a generated ID that follows a specific format. For instance, `*RS*` (`*RC*`) format shows that the instance is of type Submission (Comment). 
 * `document` is split by the sentences; hence, you will find `</s><s>` tokens within the document's text, indicating the sentence boundaries.
