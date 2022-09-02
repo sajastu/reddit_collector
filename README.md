@@ -61,7 +61,7 @@ Some notes about the implementation are outlined below:
 
 ## Citation
 
-If you intend to use these datasets, please cite the following research paper: 
+If you intend to use the data or code provided in this repo, please cite the following paper: 
 
 ````
 @inproceedings{Sotudeh2021Tldr9,
