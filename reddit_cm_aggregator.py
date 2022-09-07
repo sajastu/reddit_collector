@@ -54,16 +54,6 @@ class RedditAggregator(Reddit):
                 bulk_files.append(bulk_file)
 
         print(f'Processing {len(bulk_files)} bulk files started...')
-        ctr_processed = 0
-        ctr_processed_written = 0
-
-        # for f in bulk_files:
-        #     local_id_to_file_mapping = self._process_bulk(f)
-        #     combined_output = [self.comment_dict, local_id_to_file_mapping]
-        #
-        #     self.comment_dict = reduce(reducer, combined_output, {})
-        #
-        #     import pdb;pdb.set_trace()
 
         pool = Pool(self.args.n_cpus)
         for local_id_to_file_mapping in tqdm(pool.imap_unordered(self._process_bulk, bulk_files), total=len(bulk_files)):

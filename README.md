@@ -17,7 +17,7 @@ Each instance of TLDR9+ and TLDRHQ in the dataset has the following attributes:
 
 * `id`: The ID of the reddit post,
 * `document`: User's post text (source),
-* `summary`: Summary/TL;DR of the user's post,
+* `summary`: User-written summary/TL;DR of the post,
 * `ext_labels`: Extractive labels of the post's sentences.
 * `rg_labels`: The rouge scores of the post's sentences.
 
@@ -55,7 +55,7 @@ Some notes about the implementation are outlined below:
   - `-read_dir`: the input directory, where all uncompressed files Reddit files are located in.  
   - `-write_dir`: the output directory to write the filtered instances one-by-one.
   - `-tldr_th`: word threshold for filtering TL;DRs. The instances that do not pass this threshold will be dropped.
-  - `-lower`: a flag indicating either cased or uncased instances should be mined.
+  - `-lower`: a flag indicating either the crawled instances should be cased or uncased.
 
 ## Citation
 
@@ -78,4 +78,4 @@ If you intend to use the data or code provided in this repo, please cite the fol
 ````
 
 ## Contact
-Please contact Sajad Sotudeh ( `{firstname}@ir.cs.georgetown.edu` ) in case you have any question(s).
+Please contact [Sajad Sotudeh](mailto:sajad@ir.cs.georgetown.edu?subject=[TLDR9]%20Dataset%20Question) in case you have any question(s).

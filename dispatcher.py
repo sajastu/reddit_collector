@@ -1,5 +1,5 @@
 
-class Reddit():
+class Dispatcher():
     def __init__(self, args):
         self.args = args
 
